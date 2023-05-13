@@ -17,9 +17,9 @@ class ContaBancaria {
     Console console = new Console();  
 	console.clear();
 	
-	System.out.print("\n______________________________________________\n\n");
-    System.out.print(" __________________$BANCO NGX$________________\n\n");
-    System.out.print(" _____________________________________________\n\n");
+	System.out.print("\n_____________________________________________________________\n\n");
+    System.out.print("__________________________$-BANCO NEXT-$_____________________\n\n");
+    System.out.print("_____________________________________________________________\n\n");
   }
   public static void pressioneParaMenu()throws IOException, InterruptedException { 
 	System.out.print("-Pressione enter para voltar ao menu principal-");
@@ -48,12 +48,28 @@ class ContaBancaria {
       double valor;
       
 	  topo();
+	  System.out.print("_______________________\n\n");
+	  System.out.print("| Saldo atual: \n");
+	  System.out.print("| R$ " + saldo + "\n");
+	  System.out.print("_______________________\n\n");
+	  
       System.out.print(" Qual a quantia que voce eseja depositar? \n\n");
 	  System.out.print("\n R$ ");
       
       valor = teclado.nextDouble();
       
       reforcoSaldo(valor);
+	  
+	  topo();
+	  System.out.print("_______________________\n\n");
+	  System.out.print("| Saldo atual: \n");
+	  System.out.print("| R$ " + saldo + "\n");
+	  System.out.print("_______________________\n\n");
+	  
+	  System.out.print(" Deposito feito com sucesso! \n\n");
+	  
+	  pressioneParaMenu();
+	  
   }
   
   public static double sacar()throws IOException, InterruptedException{
@@ -63,26 +79,45 @@ class ContaBancaria {
       double valor;
 	  
 	  topo();
+	  System.out.print("_______________________\n\n");
+	  System.out.print("| Saldo atual: \n");
+	  System.out.print("| R$ " + saldo + "\n");
+	  System.out.print("_______________________\n\n");
+	  
       System.out.print(" Qual a quantia necessaria que deseja sacar? \n\n");
 	  System.out.print("\n R$ ");
       
       valor = teclado.nextDouble();
 	  
+	  sangriaSaldo(valor);
+	  
+	   topo();
+	  System.out.print("_______________________\n\n");
+	  System.out.print("| Saldo atual: \n");
+	  System.out.print("| R$ " + saldo + "\n");
+	  System.out.print("_______________________\n\n");
+	  
+	  System.out.print(" Saque feito com sucesso! \n\n");
+	  
+	  pressioneParaMenu();
+	  
+	  
       if(validarSangria(valor) == false){
         System.out.print(" Saldo insuficiente! \n\n");
         menu();
       }
-      
-      sangriaSaldo(valor);
-        
-    return saldo;
+	  
+      return saldo;
   } 
   
   public static double exibirSaldo()throws IOException, InterruptedException{
 	  
 	topo();
-    System.out.print("O seu saldo bancario e: \n");
-	System.out.print("R$ " + saldo + "\n\n");
+      System.out.print("_______________________\n\n");
+	  System.out.print("| Saldo atual: \n");
+	  System.out.print("| R$ " + saldo + "\n");
+	  System.out.print("_______________________\n\n");
+	
     pressioneParaMenu();
 	
     return saldo;
@@ -95,19 +130,17 @@ class ContaBancaria {
 	
 	topo();
     System.out.print("\n Porfavor seleciona o que deseja: \n\n");
-    System.out.print(" _____________________________________________\n\n");
+    System.out.print("_____________________________________________________________\n\n");
     System.out.print(" [1] - Depositar na conta \n\n");
     System.out.print(" [2] - Sacar da conta \n\n");
     System.out.print(" [3] - Exibir saldo da conta \n\n");
-    System.out.print(" [4] - Sair do sistema bancario \n\n");
-	System.out.print("______________________________________________\n");
-
+    System.out.print(" [4] - Sair do sistema bancario \n");
+	System.out.print("_____________________________________________________________\n\n");
+	
     opcao = teclado.nextInt();
-	
-	System.out.print("___________________________________________\n");
-	System.out.print("Obrigada pela preferencia! \n\n");
-	
-    
+	Console console = new Console();  
+	console.clear();
+	    
     switch (opcao) {
       case 1:
       depositar();
@@ -125,7 +158,7 @@ class ContaBancaria {
       break;
 
       case 4:
-      System.exit(0);
+      encerrarSistema();
       break;
 
     default:
@@ -133,7 +166,20 @@ class ContaBancaria {
     }
     
   }
-  
+  public static void encerrarSistema() throws IOException, InterruptedException{
+	  
+	topo();
+	System.out.print("____________________________________________________________\n");
+	System.out.print("Obrigada pela preferencia, te vejo em sua proxima visita! \n\n");
+	System.out.print("____________________________________________________________\n");
+	System.out.print("Estaremos encerrando automaticamente em 5 segundos!...... \n\n");
+	System.out.print("____________________________________________________________\n");
+	Thread.currentThread().sleep(5000);   
+	Console console = new Console();  
+	console.clear();
+    System.exit(0);
+	
+  }
 
 	public static void main(String args[]) throws IOException, InterruptedException {  
 
